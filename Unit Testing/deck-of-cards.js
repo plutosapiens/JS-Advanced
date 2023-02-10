@@ -51,4 +51,3 @@ function deckOfCards(array){
     }
     console.log(deck.join(' '))
 }
-
