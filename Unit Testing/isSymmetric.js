@@ -9,3 +9,4 @@ function isSymmetric(arr) {
 
 
 module.exports = isSymmetric
+

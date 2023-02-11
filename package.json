@@ -1,0 +1,24 @@
+{
+  "name": "js-advanced",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plutosapiens/JS-Advanced.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plutosapiens/JS-Advanced/issues"
+  },
+  "homepage": "https://github.com/plutosapiens/JS-Advanced#readme",
+  "dependencies": {
+    "moch": "^0.0.1",
+    "mocha": "^10.2.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}
