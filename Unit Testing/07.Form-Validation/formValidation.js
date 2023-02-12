@@ -79,7 +79,7 @@ function validate() {
         validField.style.display = 'block'
     }
     else{
-        validField.style.display = 'null'
+        validField.style.display = 'none'
     }
     console.log(validChecker)
 })

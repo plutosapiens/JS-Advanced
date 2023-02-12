@@ -13,9 +13,18 @@ describe('Char Lookup', function(){
     it('returns "Incorrect index" when the index is incorrect', () =>{
         expect(lookupChar('aaa', 3)).to.be.equal('Incorrect index')
         expect(lookupChar('aaa', 5)).to.be.equal('Incorrect index')
+    })
+    it('returns "Incorrect index" when the index is negative', () =>{
         expect(lookupChar('aaa', -1)).to.be.equal('Incorrect index')
+    })
+    it('returns "undefined" when presented with a floating number', () =>{
+        expect(lookupChar('aaa', 1.25)).to.equal(undefined)
     })
     it('returns the character in the specified index', () =>{
         expect(lookupChar('abcde', 2)).to.equal('c')
     })
+
+    it('should return undefined on lookupChar(2, 2)', () => {
+        expect(lookupChar(2, 2)).to.equal(undefined);
+    });
 })

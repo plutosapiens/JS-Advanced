@@ -16,9 +16,9 @@
   },
   "homepage": "https://github.com/plutosapiens/JS-Advanced#readme",
   "dependencies": {
+    "chai": "^4.3.7",
     "moch": "^0.0.1",
     "mocha": "^10.2.0"
   },
-  "devDependencies": {},
   "description": ""
 }

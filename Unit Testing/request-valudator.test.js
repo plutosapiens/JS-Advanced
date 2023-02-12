@@ -2,52 +2,49 @@
 
 function requestValidator(request){
     const{method, uri, version, message} = request
+    console.log(message)
     //make error message for diferent params
     const errorMessage = (typeOfParam) => {
         throw new Error('Invalid request header: Invalid ' + typeOfParam)
     }
 //check if params are right
     const validMethods = ['GET', 'POST', 'DELETE', 'CONNECT']
-    if(!validMethods.includes(method) || !method){
+    if((!validMethods.includes(method) || !method) || method == undefined){
         (errorMessage('Method'))
     }
     const validVersions = ['HTTP/0.9', 'HTTP/1.0', 'HTTP/1.1', 'HTTP/2.0']
-    if(!validVersions.includes(version) || !version){
+    if((!validVersions.includes(version) || !version) || version == undefined){
         (errorMessage('Version'))
     }
     const uriPattern = /^([\w.])+$|^\*$/g
     //check the regex explanation bellow
-    if(!uriPattern.exec(uri) || !uri){
+    if((!uriPattern.exec(uri) || !uri) || uri == undefined){
         (errorMessage('URI'))
     }
     const forbidenSymbols = ['<', '>', '\\', '&', '\'', '"']
     //check for explanation on how to escape certain chars bellow
-    console.log(message.split('').length)
     for(let symbol of forbidenSymbols){
-        if(message.split('').includes(symbol) ){
+        if((message !== undefined && message.split('').includes(symbol)|| message == undefined) ){
         (errorMessage('Message'))
+        }
     }
-    }
-
     return request
 }
 
-console.log
-(requestValidator({
-    method: 'GET',
-    uri: 'svn.public.catalog',
-    version: 'HTTP/1.1',
-    message: '\n'
-  }
-  ))
+
+
+// Unexpected error: expected [
+//  TypeError: Cannot read property 'split' of undefined] to have property 'message' of 
+//'Invalid request header: Invalid Message', but got 'Cannot read property \'split\' of undefined'
+
 
 console.log(requestValidator({
-    method: 'GET',
-    uri: 'svn.public.catalog',
-    version: 'HTTP/1.1',
-    message: ''
-  }
-  ))
+        method: 'POST',
+        message: 'home.bash',
+        version: 'HTTP/2.0'
+    }))
+    
+
 
 
 
