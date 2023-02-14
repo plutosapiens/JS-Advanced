@@ -9,8 +9,12 @@ class List{
         this.size = this.list.length
     }
     remove(index){
-        this.list.splice(index,1)
-        this.size = this.list.length
+        if (index < 0 || index >= this.list.length) {
+            throw new Error(`Index doesn't exist`);
+        } else {
+            this.list.splice(index,1)
+            this.size = this.list.length
+        }
     }
     get(index){
         if(this.list[index] == undefined){

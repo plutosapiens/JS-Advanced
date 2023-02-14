@@ -24,4 +24,5 @@ class Stringer{
     }
 }
  let str = new Stringer('asdfghj', 10)
+ str.decrease(7)
  console.log(str.innerString)
