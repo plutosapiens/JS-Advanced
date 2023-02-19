@@ -4,7 +4,7 @@ class Request {
         this.uri = uri
         this.version = version
         this.message = message
-        this.responce = undefined
+        this.response = undefined
         this.fulfilled = false
     }
 }
