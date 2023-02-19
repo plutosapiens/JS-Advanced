@@ -8,17 +8,16 @@
 // o	If any of the 2 parameters is NOT a number, the function should return undefined.
 // o	If both parameters are numbers, the function should return their sum. 
 
-const {expect} = require('chai')
-const mathEnforcer = require('./mathEnforcer')
+let {expect} = require('chai')
+let mathEnforcer = require('./mathEnforcer')
 
-describe('MachEnforcer check', function(){
+describe('mathEnforcer check', function(){
     describe('addFive', function(){
         it('returns "undefined" if the parameter is not a number', () =>{
-            expect(mathEnforcer.addFive('a')).to.equal(undefined)
-            expect(mathEnforcer.addFive(['a'])).to.equal(undefined)
-            expect(mathEnforcer.addFive()).to.equal(undefined)
-            expect(mathEnforcer.addFive({'a':5})).to.equal(undefined)
-            
+            expect(mathEnforcer.addFive('a'), 'Input should be a number').to.equal(undefined)
+            expect(mathEnforcer.addFive(['a']), 'Input should be a number').to.equal(undefined)
+            expect(mathEnforcer.addFive(), 'Input should be a number').to.equal(undefined)
+            expect(mathEnforcer.addFive({'a':5}), 'Input should be a number').to.equal(undefined)
         })
         it('addFive accepts a single prameter, and returns parameter + 5', () =>{
             expect(mathEnforcer.addFive(4)).to.equal(9)
@@ -41,8 +40,8 @@ describe('MachEnforcer check', function(){
             expect(mathEnforcer.subtractTen(-12)).to.equal(-22)  
         })
         it("returns correct sum with floating numbers",function(){
-            expect(mathEnforcer.subtractTen(10.001)).closeTo(0.001,0.001,"Numbers are close");
-         });
+            expect(mathEnforcer.subtractTen(10.001)).closeTo(0.001, 0.001, "Numbers are close");
+         })
     })
     describe('Sum', function(){
         it('returns undefined if one of the parameters is not a number', () =>{
@@ -61,3 +60,25 @@ describe('MachEnforcer check', function(){
          });
     })
 })
+
+//Correct
+mathEnforcer = {
+    addFive: function (num) {
+        if (typeof(num) !== 'number') {
+            return undefined;
+        }
+        return num + 5;
+    },
+    subtractTen: function (num) {
+        if (typeof(num) !== 'number') {
+            return undefined;
+        }
+        return num - 10;
+    },
+    sum: function (num1, num2) {
+        if (typeof(num1) !== 'number' || typeof(num2) !== 'number') {
+            return undefined;
+        }
+        return num1 + num2;
+    }
+};

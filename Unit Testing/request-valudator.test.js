@@ -2,7 +2,6 @@
 
 function requestValidator(request){
     const{method, uri, version, message} = request
-    console.log(message)
     //make error message for diferent params
     const errorMessage = (typeOfParam) => {
         throw new Error('Invalid request header: Invalid ' + typeOfParam)
@@ -80,3 +79,61 @@ console.log(requestValidator({
 //Global pattern flags 
 //g modifier: global. All matches (don't return after first match)
 //m modifier: multi line. Causes ^ and $ to match the begin/end of each line (not only begin/end of string)
+
+
+
+function requestValidator(request) {
+    const { method, uri, version, message } = request
+  
+    // Helper function to throw an error with the appropriate message
+    const throwError = (param) => {
+      throw new Error(`Invalid request header: Invalid ${param}`)
+    }
+  
+    // Check method
+    if (!method || !['GET', 'POST', 'DELETE', 'CONNECT'].includes(method)) {
+      throwError('Method')
+    }
+  
+    // Check URI
+    const validUri = /^[\w\.]+|\*$/g.test(uri)
+    if (!uri || !validUri) {
+      throwError('URI')
+    }
+  
+    // Check version
+    if (!version || !['HTTP/0.9', 'HTTP/1.0', 'HTTP/1.1', 'HTTP/2.0'].includes(version)) {
+      throwError('Version')
+    }
+  
+    // Check message
+    const validMessage = message === undefined || /^[^<>&'"\\]*$/g.test(message)
+    if (!validMessage) {
+      throwError('Message')
+    }
+  
+    return request
+}
+  
+
+
+function requestValidator(obj) {
+    const methodValidate = ['GET', 'POST', 'DELETE', 'CONNECT']
+    const versionValidate = ['HTTP/0.9', 'HTTP/1.0', 'HTTP/1.1', 'HTTP/2.0']
+    let uriPattern = /[^A-Za-z0-9\.\*]+/
+    let messagePattern = /[<>\\\&\'\"]+/
+ 
+    if ((obj.method === undefined) || !(methodValidate.includes(obj.method))) {
+        throw new Error ('Invalid request header: Invalid Method')
+    };
+    if ((obj.uri === undefined) || obj.uri == '' || uriPattern.test(obj.uri)) {
+        throw new Error ('Invalid request header: Invalid URI')
+    };
+    if ((obj.version === undefined) || !(versionValidate.includes(obj.version))) {
+        throw new Error ('Invalid request header: Invalid Version')
+    }
+    if ((obj.message === undefined) || ((messagePattern.test(obj.message)) == true)) {
+        throw new Error ('Invalid request header: Invalid Message')
+    }
+  return obj
+}

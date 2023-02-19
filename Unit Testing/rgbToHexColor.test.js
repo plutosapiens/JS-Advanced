@@ -3,7 +3,7 @@ const rgbToHexColor = require('./rgbToHexColor')
 
 describe('rgbToHex', function(){
 //•	Take three integer numbers, representing the red, green, and blue values of RGB color, each within the range [0…255]
-it('takes input as intiger numbers', () =>{
+it('takes input as integer numbers', () =>{
     expect(rgbToHexColor(1,2,3)).to.equal('#010203')
     expect(rgbToHexColor('1', '2', '3')).to.equal(undefined)      
 })
